@@ -16,7 +16,7 @@ public class GUI extends Frame{
 		_canvas = new DrawingCanvas(2); //Canvas mit maximal 2 Kreisen
 		
 		setSize(size);
-		setTitle("KreisExtrene: v"+_versionNumber);
+		setTitle("KreisExtrene v"+_versionNumber);
 		add(_canvas);
 		
 		addWindowListener(new WindowAdapter(){
