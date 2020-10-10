@@ -5,13 +5,13 @@ import java.awt.geom.Ellipse2D;
 
 public class DrawingCanvas extends Canvas implements MouseListener{
 	
-	private Ellipse2D[] _circles; //Alle Kreise auf dem Canvas (Buffer)
+	private Shape[] _circles; //Alle Kreise auf dem Canvas (Buffer)
 	private int _currentCircles;  //Anzahl aller momentanen Kreise
 	
 	public DrawingCanvas(int circles) {
 		super();
 		addMouseListener(this);
-		_circles = new Ellipse2D[circles]; // circle ist die maximale Anzahl an Kreisen
+		_circles = new Ellipse2D[circles]; // circles ist die maximale Anzahl an Kreisen
 		_currentCircles = 0;
 		setBackground(Color.DARK_GRAY);
 		
@@ -33,15 +33,18 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 	public void paint(Graphics g) {
 		Graphics2D gd2 = (Graphics2D)g;
 		gd2.setColor(Color.WHITE); //Kreisfarbe
-		for(Ellipse2D cir : _circles) {
+		for(Shape cir : _circles) {
 			if(cir != null)
-				gd2.draw(cir);		
+				gd2.draw(cir);
 		}
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		drawCircle(e.getX(), e.getY(), 30.0f);
+		if (e.getClickCount() == 2 && !e.isConsumed()) { //Doppelclick
+		     e.consume();
+		     drawCircle(e.getX(), e.getY(), 30.0f);
+		}
 	}
 
 	@Override
