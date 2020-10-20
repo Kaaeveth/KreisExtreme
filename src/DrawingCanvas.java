@@ -42,6 +42,10 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 				//Koordinaten an den Kreisen zeichen
 				RectangularShape shape = (RectangularShape)cir;
 				gd2.drawString("(X: "+shape.getX()+", Y: "+shape.getY()+")", (float)shape.getX(), (float)shape.getY());
+				gd2.drawLine((int)((RectangularShape)_circles[0]).getX() + (int)_radius/2,
+						(int)((RectangularShape)_circles[0]).getY() + (int)_radius/2,
+						(int)((RectangularShape)_circles[1]).getX() + (int)_radius/2,
+						(int)((RectangularShape)_circles[1]).getY() + (int)_radius/2);
 			}
 		}
 	}
