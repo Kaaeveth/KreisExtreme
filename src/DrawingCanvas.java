@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.RectangularShape;
 
 public class DrawingCanvas extends Canvas implements MouseListener{
 	
@@ -34,8 +35,13 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 		Graphics2D gd2 = (Graphics2D)g;
 		gd2.setColor(Color.WHITE); //Kreisfarbe
 		for(Shape cir : _circles) {
-			if(cir != null)
+			if(cir != null) {
 				gd2.draw(cir);
+				
+				//Koordinaten an den Kreisen zeichen
+				RectangularShape shape = (RectangularShape)cir;
+				gd2.drawString("(X: "+shape.getX()+", Y: "+shape.getY()+")", (float)shape.getX(), (float)shape.getY());
+			}
 		}
 	}
 	
