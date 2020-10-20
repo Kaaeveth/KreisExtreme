@@ -42,10 +42,23 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 				//Koordinaten an den Kreisen zeichen
 				RectangularShape shape = (RectangularShape)cir;
 				gd2.drawString("(X: "+shape.getX()+", Y: "+shape.getY()+")", (float)shape.getX(), (float)shape.getY());
-				gd2.drawLine((int)((RectangularShape)_circles[0]).getX() + (int)_radius/2,
-						(int)((RectangularShape)_circles[0]).getY() + (int)_radius/2,
-						(int)((RectangularShape)_circles[1]).getX() + (int)_radius/2,
-						(int)((RectangularShape)_circles[1]).getY() + (int)_radius/2);
+				
+				if(_circles[1] != null) {
+					gd2.drawLine((int)((RectangularShape)_circles[0]).getCenterX(),
+							(int)((RectangularShape)_circles[0]).getCenterY(),
+							(int)((RectangularShape)_circles[1]).getCenterX(),
+							(int)((RectangularShape)_circles[1]).getCenterY());
+				
+
+					// Berechne Distanz aus den beiden Kreiskoordinaten
+					double distance = Math.sqrt(
+							Math.pow((float)((RectangularShape)_circles[1]).getCenterX()
+								- (float)((RectangularShape)_circles[0]).getCenterX(), 2) +
+							Math.pow((float)((RectangularShape)_circles[1]).getCenterY() -
+									(float)((RectangularShape)_circles[0]).getCenterY(), 2));
+					// Gibt die Distanz aus
+					gd2.drawString("DISTANCE: " + distance, 0, 15);
+				}
 			}
 		}
 	}
