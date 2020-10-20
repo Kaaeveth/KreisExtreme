@@ -8,6 +8,7 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 	
 	private Shape[] _circles; //Alle Kreise auf dem Canvas (Buffer)
 	private int _currentCircles;  //Anzahl aller momentanen Kreise
+	private float radius;
 	
 	public DrawingCanvas(int circles) {
 		super();
@@ -41,6 +42,10 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 				//Koordinaten an den Kreisen zeichen
 				RectangularShape shape = (RectangularShape)cir;
 				gd2.drawString("(X: "+shape.getX()+", Y: "+shape.getY()+")", (float)shape.getX(), (float)shape.getY());
+				gd2.drawLine((int)((RectangularShape)_circles[0]).getX() + (int)radius/2,
+						(int)((RectangularShape)_circles[0]).getY() + (int)radius/2,
+						(int)((RectangularShape)_circles[1]).getX() + (int)radius/2,
+						(int)((RectangularShape)_circles[1]).getY() + (int)radius/2);
 			}
 		}
 	}
@@ -50,6 +55,7 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 		if (e.getClickCount() == 2 && !e.isConsumed()) { //Doppelclick
 		     e.consume();
 		     drawCircle(e.getX(), e.getY(), 30.0f);
+		     radius = 30;
 		}
 	}
 
