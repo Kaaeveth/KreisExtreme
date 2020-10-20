@@ -8,6 +8,7 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 	
 	private Shape[] _circles; //Alle Kreise auf dem Canvas (Buffer)
 	private int _currentCircles;  //Anzahl aller momentanen Kreise
+	private float _radius = 30.0f;
 	
 	public DrawingCanvas(int circles) {
 		super();
@@ -25,7 +26,7 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 			_circles = new Shape[_circles.length]; // Buffer reseten
 			_currentCircles = 0;
 		} else {
-			_circles[_currentCircles++] = new Ellipse2D.Float(x,y,r,r); //Neuen Kreis im Buffer
+			_circles[_currentCircles++] = new Ellipse2D.Float(x, y, r, r); //Neuen Kreis im Buffer
 		}
 		repaint();
 	}
@@ -45,11 +46,14 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 		}
 	}
 	
+	public float getRadius() {return _radius;}
+	public void setRadius(float r) {_radius = r;} 
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) { //Doppelclick
 		     e.consume();
-		     drawCircle(e.getX(), e.getY(), 30.0f);
+		     drawCircle(e.getX(), e.getY(), _radius);
 		}
 	}
 

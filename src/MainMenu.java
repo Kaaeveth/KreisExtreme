@@ -6,11 +6,19 @@ import java.awt.event.MouseEvent;
 
 public class MainMenu extends MenuBar {
 	
-	private Menu _menu;
-	private DrawingCanvas _canvas = null;
-	public MainMenu(DrawingCanvas canvas) {
-		_canvas = canvas;
-		_menu = new Menu("Hintergrundfarbe");
+	private Menu _menuColor;
+	private Menu _menuMisc;
+	private GUI _frame = null;
+	
+	public MainMenu(GUI win) {
+		_frame = win;
+		_menuColor = new Menu("Hintergrundfarbe");
+		_menuMisc = new Menu("Misc");
+		
+		MenuItem radiusItem = new MenuItem("Kreisradius");
+		radiusItem.addActionListener(new OnModalClick());
+		_menuMisc.add(radiusItem);
+		
 		MenuItem farbe1= new MenuItem("Farbe: grün");
 		MenuItem farbe2= new MenuItem("Farbe: dunkelgrau");
 		MenuItem farbe3= new MenuItem("Farbe: orange");
@@ -19,11 +27,13 @@ public class MainMenu extends MenuBar {
 		farbe2.addActionListener(new ColourClick(Color.darkGray));	
 		farbe3.addActionListener(new ColourClick(Color.orange));	
 		farbe4.addActionListener(new ColourClick(Color.black));	
-		_menu.add(farbe2);
-		_menu.add(farbe1);
-		_menu.add(farbe3);
-		_menu.add(farbe4);
-		add(_menu);
+		_menuColor.add(farbe2);
+		_menuColor.add(farbe1);
+		_menuColor.add(farbe3);
+		_menuColor.add(farbe4);
+		
+		add(_menuColor);
+		add(_menuMisc);
 	}
 	
 	private class ColourClick implements ActionListener{
@@ -31,10 +41,19 @@ public class MainMenu extends MenuBar {
 		public ColourClick(Color c) {
 			this.c = c;
 		}
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub			
-				_canvas.setBackground(c);					
+			_frame.getCanvas().setBackground(c);
+		}
+		
+	}
+	
+	private class OnModalClick implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			_frame.getCanvas().setRadius(_frame.getRadiusDialog().askRadius());
 		}
 		
 	}
