@@ -13,7 +13,7 @@ public class GUI extends Frame{
 		super();
 		_versionNumber = version;
 		_canvas = new DrawingCanvas(2); //Canvas mit maximal 2 Kreisen
-		_rDialog = new RadiusDialog(this);
+		_rDialog = new RadiusDialog(this); //Radiusdialog mit GUI als Parent
 		
 		setSize(size);
 		setTitle("KreisExtreme v"+_versionNumber);

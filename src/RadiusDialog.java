@@ -15,7 +15,7 @@ public class RadiusDialog extends Dialog {
 		setSize(350, 100);
 		
 		_radiusInput = new TextField(1);
-		_radiusInput.setText(String.valueOf(((GUI) owner).getCanvas().getRadius())); //Anfangsradius setzen
+		_radiusInput.setText(String.valueOf(((GUI) owner).getCanvas().getRadius())); //Anfangsradius im Dialog setzen
 		
 		addWindowListener(new WindowAdapter(){
 		  public void windowClosing(WindowEvent we){
@@ -27,6 +27,7 @@ public class RadiusDialog extends Dialog {
 		add(_radiusInput);
 	}
 	
+	//Zeigt das Dialog an
 	public float askRadius() {
 		setVisible(true);
 		return Float.parseFloat(_radiusInput.getText());

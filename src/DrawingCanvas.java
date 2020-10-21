@@ -35,6 +35,7 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 	public void paint(Graphics g) {
 		Graphics2D gd2 = (Graphics2D)g;
 		gd2.setColor(Color.WHITE); //Kreisfarbe
+		
 		for(Shape cir : _circles) {
 			if(cir != null) {
 				gd2.draw(cir);
@@ -44,6 +45,7 @@ public class DrawingCanvas extends Canvas implements MouseListener{
 				gd2.drawString("(X: "+shape.getX()+", Y: "+shape.getY()+")", (float)shape.getX(), (float)shape.getY());
 				
 				if(_circles[1] != null) {
+					//Zeichne eine Linie zwischen den Kreismittelpunkten
 					gd2.drawLine((int)((RectangularShape)_circles[0]).getCenterX(),
 							(int)((RectangularShape)_circles[0]).getCenterY(),
 							(int)((RectangularShape)_circles[1]).getCenterX(),

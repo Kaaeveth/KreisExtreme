@@ -42,6 +42,7 @@ public class MainMenu extends MenuBar {
 			this.c = c;
 		}
 		
+		//Wenn eine Farbe ausgewaehlt wird
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			_frame.getCanvas().setBackground(c);
@@ -51,6 +52,7 @@ public class MainMenu extends MenuBar {
 	
 	private class OnModalClick implements ActionListener{
 
+		//Wenn das Radiusdialog geoeffnet wird / Neuer Radius angefordert wird
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			_frame.getCanvas().setRadius(_frame.getRadiusDialog().askRadius());
